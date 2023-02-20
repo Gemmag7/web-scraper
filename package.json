@@ -1,0 +1,17 @@
+{
+  "name": "web-scraper",
+  "version": "1.0.0",
+  "description": "A web scraper app that will scrap data from a website and then display scraped data to user",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "web",
+    "scraper",
+    "node.js",
+    "axios"
+  ],
+  "author": "Gemma Grant",
+  "license": "ISC"
+}
