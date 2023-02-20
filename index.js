@@ -17,17 +17,18 @@ axios.get('https://cdn.adimo.co/clients/Adimo/test/index.html')
        // console.log(data)
         $('.item', data).each(function(){
             const name = $(this).find('h1').text()
-            const description = $(this).find('p').text()
+            const url = $(this).find('img').attr('src')
            const price = $(this).find('.price').text()
            const oldPrice = $(this).find('.oldPrice').text()
             products.push({
                 name, 
-                description,
+                url,
                 price, 
                 oldPrice
             })
         })
         console.log(products)
+        console.log(products.length)
     })
     .catch(function(error) {
         //Print error if any occured
