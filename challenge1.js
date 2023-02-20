@@ -2,10 +2,21 @@ const axios = require('axios')
 const cheerio = require('cheerio')
 const express = require ('express')
 const fs = require('fs')
+const promptSync = require('prompt-sync')
 const PORT = 3000
 const app = express()
 
-axios.get('https://cdn.adimo.co/clients/Adimo/test/index.html')
+const readline = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+readline.input('Enter a search term', input => {
+  console.log(`${input}`);
+  readline.close();
+});
+//const input = prompt("Enter search term here")
+axios.get(`https://www.thewhiskyexchange.com/search?q=${input}`)
     .then(function(response) {
         // HTML is inside response.data
         const data = response.data
@@ -14,8 +25,8 @@ axios.get('https://cdn.adimo.co/clients/Adimo/test/index.html')
         
         let $ = cheerio.load(data)
         
-        $('.item', data).each(function(){
-            const name = $(this).find('h1').text()
+        $('.product-grid_item', data).each(function(){
+            const name = $(this).find('a').attr('title')
             const url = $(this).find('img').attr('src')
            const price = $(this).find('.price').text()
            const oldPrice = $(this).find('.oldPrice').text()
@@ -54,7 +65,7 @@ const jsonData ={
 }
   const myJSON = JSON.stringify(jsonData, null, 2)
         console.log(myJSON);
-  fs.writeFile("./data.json", myJSON, err =>{
+  fs.writeFile("./challenge1Data.json", myJSON, err =>{
     if(err){
         console.log("Error writing file", err)
     }

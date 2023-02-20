@@ -4,7 +4,8 @@
   "description": "A web scraper app that will scrap data from a website and then display scraped data to user",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "challenge1": "nodemon challenge1.js"
   },
   "keywords": [
     "web",
@@ -19,7 +20,9 @@
     "axios": "^1.3.3",
     "cheerio": "^1.0.0-rc.12",
     "express": "^4.18.2",
+    "fs": "0.0.1-security",
     "jsonfile": "^6.1.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "prompt-sync": "^4.2.0"
   }
 }
