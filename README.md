@@ -6,7 +6,7 @@ however, if nodemon is already installed, npm start can be used to start the app
 
 
 The dev dependencies needed for application to run are: 
-express
-axios
-cheerio
+express,
+axios,
+cheerio,
 fs
