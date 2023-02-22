@@ -29,13 +29,13 @@ axios.get(url)
            
         })
         
-        console.log(JSON.stringify(products))
+        //console.log(JSON.stringify(products))
         //console.log(products.length)
 
      //Initialising variables 
 
      //products_price is initialised as an empty string
-     let products_price = "";
+     let products_price = 0;
      //total is initialised to 0
      let total = 0;
      //price_str is initialised as an empty string
@@ -70,6 +70,11 @@ axios.get(url)
     
       //Average is calulcated by dividing the total amou by the size of the products array
       average = total / size
+      console.log(products_price)
+      console.log(price_str)
+      console.log(parsed_prices)
+      console.log(total)
+      console.log(average)
   }
 
   //Initialising jsonData object to be inserted into data.json file
@@ -81,7 +86,7 @@ const jsonData ={
 }
   //Creating a new JSON object that will contain the jsonData to be included
   const myJSON = JSON.stringify(jsonData, null, 2)
-        console.log(myJSON);
+        //console.log(myJSON);
   //New file called data.json will be created if successful, if not then an error message will display to user      
   fs.writeFile("./data.json", myJSON, err =>{
     if(err){
