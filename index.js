@@ -70,11 +70,11 @@ axios.get(url)
     
       //Average is calulcated by dividing the total amou by the size of the products array
       average = total / size
-      console.log(products_price)
-      console.log(price_str)
-      console.log(parsed_prices)
-      console.log(total)
-      console.log(average)
+     // console.log(products_price)
+      //console.log(price_str)
+      //console.log(parsed_prices)
+      //console.log(total)
+      //console.log(average)
   }
 
   //Initialising jsonData object to be inserted into data.json file

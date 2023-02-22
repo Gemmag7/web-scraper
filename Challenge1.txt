@@ -1,17 +1,38 @@
 req_URL = 'https://www.thewhiskyexchange.com/search?q=cider'
 
-GET axios_request
-  If axios_request IS SUCCESSFUL:
+GET axios_request FROM req_URL
+  If axios_request IS SUCCESSFUL
     SET data TO response.data
     SET products TO EMPTY ARRAY
-    FOR EACH '.product-grid_item' in data
-      SET
-      SET
-      SET
-      SET
+    FOR EACH '.product-grid_item' in data{
+      SET name TO attribute on webpage called 'title'
+      SET details TO attribute on webpage called 'product-card__meta'
+      SET price TO attribute on webpage called 'product-card__price'
+      SET unitPrice TO attribute on webpage called 'product-card__unit-price'
+      SET image to attribute on webpage called 'src' in the 'img' class
+     } 
     END of FOR EACH LOOP 
-    SET sum TO 0
+    SeET name, details, price, unitPrice and image TO products array
+    SET products_price TO 0
+    SET total TO 0
+    SET price_str TO 0
+    SET parsed_prices TO 0
     SET average TO 0
+    SET size_of_array TO the length of products array
+    WHILE i = 0, i < size_of_array, i ++{
+      SET products_price TO each product.price element 
+      SET price_str TO products_price with £ sign removed
+      SET parsed_prices TO a parsed float array of price_str
+      SET total TO every price in parsed_prices added togther
+      Set average TO total / Size
+    END OF WHILE LOOP
+    SET jsonData to include average, size and products array
+    SET myJSON to use JSON.stringify with jsonData 
+    THEN create JSON file called data.json
+      IF successful
+        THEN success message will display to user
+      ELSE
+        THEN error message will display to user
     RETURN average TO USER
   ELSE 
     PRINT error TO USER 
