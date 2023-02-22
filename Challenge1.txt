@@ -1,0 +1,17 @@
+req_URL = 'https://www.thewhiskyexchange.com/search?q=cider'
+
+GET axios_request
+  If axios_request IS SUCCESSFUL:
+    SET data TO response.data
+    SET products TO EMPTY ARRAY
+    FOR EACH '.product-grid_item' in data
+      SET
+      SET
+      SET
+      SET
+    END of FOR EACH LOOP 
+    SET sum TO 0
+    SET average TO 0
+    RETURN average TO USER
+  ELSE 
+    PRINT error TO USER 

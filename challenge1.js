@@ -2,21 +2,13 @@ const axios = require('axios')
 const cheerio = require('cheerio')
 const express = require ('express')
 const fs = require('fs')
-const promptSync = require('prompt-sync')
-const PORT = 3000
+const readline = require("readline")
+const PORT = 3006
 const app = express()
 
-const readline = require('readline').createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-readline.input('Enter a search term', input => {
-  console.log(`${input}`);
-  readline.close();
-});
+const userInput = "beer";
 //const input = prompt("Enter search term here")
-axios.get(`https://www.thewhiskyexchange.com/search?q=${input}`)
+axios.get('https://www.thewhiskyexchange.com/search?q=cider')
     .then(function(response) {
         // HTML is inside response.data
         const data = response.data
@@ -27,15 +19,13 @@ axios.get(`https://www.thewhiskyexchange.com/search?q=${input}`)
         
         $('.product-grid_item', data).each(function(){
             const name = $(this).find('a').attr('title')
-            const url = $(this).find('img').attr('src')
-           const price = $(this).find('.price').text()
-           const oldPrice = $(this).find('.oldPrice').text()
-            products.push({name, url,price, oldPrice})
-           
+            
+            //products.push({name, url,price, oldPrice})
+            console.log(name)
         })
         
-        console.log(JSON.stringify(products))
-        console.log(products.length)
+        console.log(name)
+        //console.log(products.length)
      let sum = 0;
      let total = 0;
      let str = " "
@@ -54,14 +44,18 @@ axios.get(`https://www.thewhiskyexchange.com/search?q=${input}`)
         return a + b;
       });
     
+      //Average is calulcated by dividing the total amou by the size of the products array
       average = total / size
       
       
   }
+
+  //Initialising jsonData object to be inserted into data.json file
+  //3 components inserted into file: average price of the products array, the number of products in the array and also the products array as well inserted into the JSON file
 const jsonData ={
     average: {average}, 
     number_of_products : {size}, 
-    ' ' : {products}
+    '':{products}
 }
   const myJSON = JSON.stringify(jsonData, null, 2)
         console.log(myJSON);
